@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useCallback } from 'react'
+import 'semantic-ui-css/semantic.min.css'
+import './styles/AppStyle.css';
+import Search from './components/Search'
+import Main from './components/Main'
 
-function App() {
+const App = () => {
+  const [properties, setProperties] = useState(null);
+
+  const callSetProperties = useCallback((prop_properties) => {
+    setProperties(prop_properties);
+  }, []);
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="App">
+        <div class="header">
+            <div class="header-title">WorkerOrder</div>
+            <Search onSubmit={callSetProperties} />
+        </div> 
+        <Main properties={properties}/>
+      </div>
   );
 }
 
